@@ -38,9 +38,10 @@ public class DBConnection
 		int i = 1;
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs=stmt.executeQuery("select Pname, Pprice from product where Pcategory='"+type+"'");
+			ResultSet rs=stmt.executeQuery("select Pname, Pprice,Pquantity from product where Pcategory='"+type+"'");
 			while(rs.next()) {
-				System.out.println(i + " " + rs.getString(1) + " " + rs.getInt(2));
+				if(rs.getInt(3)>0)
+				   System.out.println(i + " " + rs.getString(1) + " " + rs.getInt(2));
 				i++;}
 		} catch (SQLException e) {
 			System.out.println(e);
